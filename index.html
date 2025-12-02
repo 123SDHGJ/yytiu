@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时尚动态渐变按钮组 - 带链接功能</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 50%, #4a69bd 100%);
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 242, 254, 0.2);
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #a0c8ff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+        }
+        
+        /* 链接按钮基础样式 */
+        .fashion-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+            z-index: 1;
+            text-transform: uppercase;
+            text-decoration: none;
+            outline: none;
+            
+            /* 默认流动动画 */
+            background: linear-gradient(90deg, 
+                #1e3c72 0%, 
+                #2a5298 25%, 
+                #4a69bd 50%, 
+                #2a5298 75%, 
+                #1e3c72 100%);
+            background-size: 400% 100%;
+            animation: gradientFlow 8s linear infinite;
+        }
+        
+        /* 流动背景动画 */
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 400% 50%;
+            }
+        }
+        
+        /* 每个按钮独特的渐变颜色方案 */
+        .btn-1 {
+            background: linear-gradient(90deg, 
+                #ff6b6b 0%, 
+                #ff8e8e 25%, 
+                #ffafaf 50%, 
+                #ff8e8e 75%, 
+                #ff6b6b 100%);
+            background-size: 400% 100%;
+        }
+        
+        .btn-2 {
+            background: linear-gradient(90deg, 
+                #4ecdc4 0%, 
+                #6de1d9 25%, 
+                #8ef6ed 50%, 
+                #6de1d9 75%, 
+                #4ecdc4 100%);
+            background-size: 400% 100%;
+        }
+        
+        .btn-3 {
+            background: linear-gradient(90deg, 
+                #ffe66d 0%, 
+                #fff18f 25%, 
+                #fffbb1 50%, 
+                #fff18f 75%, 
+                #ffe66d 100%);
+            background-size: 400% 100%;
+        }
+        
+        .btn-4 {
+            background: linear-gradient(90deg, 
+                #9b5de5 0%, 
+                #b180f0 25%, 
+                #c7a3fb 50%, 
+                #b180f0 75%, 
+                #9b5de5 100%);
+            background-size: 400% 100%;
+        }
+        
+        /* 悬停旋转效果 */
+        .fashion-btn:hover {
+            transform: rotateY(180deg);
+        }
+        
+        /* 水波纹效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* 响应式设计 - 小屏幕调整布局 */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .fashion-btn {
+                width: 200px;
+                height: 40px;
+                font-size: 15px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .fashion-btn {
+                width: 180px;
+                height: 35px;
+                font-size: 13px;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 30px 15px;
+            }
+        }
+        
+        .instructions {
+            margin-top: 40px;
+            text-align: center;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #4facfe;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #4facfe;
+        }
+        
+        .instructions ul {
+            list-style-type: none;
+            text-align: left;
+            margin: 15px 0;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .instructions li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00f2fe;
+            font-weight: bold;
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            background: rgba(79, 172, 254, 0.2);
+            color: #4facfe;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0 5px;
+            border: 1px solid rgba(79, 172, 254, 0.3);
+        }
+        
+        .link-info {
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #a0c8ff;
+            text-align: left;
+        }
+        
+        .link-info p {
+            margin-bottom: 10px;
+        }
+        
+        .link-info code {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #4facfe;
+        }
+        
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .color-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        
+        .color-name {
+            font-size: 0.8rem;
+            color: #a0c8ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">永久867b.cc网站</h1>
+        <p class="subtitle"></p>
+        
+        <div class="button-container">
+            <a href="#http://genfcvci.u.czxbw.com/s/15G6DS" class="fashion-btn btn-1">设计</a>
+            <a href="#http://dsjhfgsdfdgs.cn/syb/" class="fashion-btn btn-2">时尚</a>
+            <a href="https://mc-public-tz.taizhou.com.cn/9iqsf6z0cyr0q9f9qbdoxbfb6v18.html#?atecode=NDAxLFFNWFJFcywx" class="fashion-btn btn-3" target="_blank">潮流</a>
+            <a href="http://4vglo.work/a/615729?aiMA" class="fashion-btn btn-4" target="_blank">风格</a>
+        </div>
+        
+    <script>
+        // 为所有按钮添加水波纹点击效果
+        document.querySelectorAll('.fashion-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // 创建水波纹元素
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                
+                // 计算水波纹位置
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                // 设置水波纹样式
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                // 将水波纹添加到按钮中
+                this.appendChild(ripple);
+                
+                // 动画结束后移除水波纹元素
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+                
+                // 如果是内部锚点链接，平滑滚动到目标
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 50,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                
+                // 添加临时点击效果
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // 添加键盘支持
+        document.querySelectorAll('.fashion-btn').forEach(button => {
+            button.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
